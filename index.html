@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Well Soon ❤️</title>
+    <style>
+        :root {
+            --bg-color: #fff5f7;
+            --card-bg: #ffffff;
+            --accent: #ff6b81;
+            --text: #4a4a4a;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--bg-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Card Container */
+        .card {
+            width: 85%;
+            max-width: 350px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .icon-container {
+            font-size: 50px;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        h1 {
+            color: var(--accent);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        /* Interactive Button */
+        .btn {
+            margin-top: 25px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 107, 129, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Surprise Message Style */
+        #surprise {
+            display: none;
+            margin-top: 20px;
+            font-style: italic;
+            color: #ff4757;
+            animation: fadeIn 1s;
+        }
+
+        /* Background floating hearts */
+        .heart {
+            position: absolute;
+            color: var(--accent);
+            opacity: 0.3;
+            z-index: 1;
+            animation: fly 6s linear infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fly {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="hearts-bg"></div>
+
+    <div class="card">
+        <div class="icon-container">🍵✨</div>
+        <h1>Feel Better Soon!</h1>
+        <p>Sending you all the cozy vibes, warm tea, and a million virtual hugs.</p>
+        <p>Rest up, because I miss your smile! ❤️</p>
+        
+        <button class="btn" onclick="showSurprise()">Tap for a Hug</button>
+        <div id="surprise">Sending a 10-second virtual hug... Loading... Done! I love you! 💖</div>
+    </div>
+
+    <script>
+        function showSurprise() {
+            const msg = document.getElementById('surprise');
+            msg.style.display = 'block';
+            
+            // Add a little haptic-like vibration if supported
+            if (window.navigator.vibrate) {
+                window.navigator.vibrate(200);
+            }
+        }
+
+        // Create random background hearts
+        function createHearts() {
+            const bg = document.getElementById('hearts-bg');
+            const icons = ['❤️', '🌸', '🩹', '🧸'];
+            
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                bg.appendChild(heart);
+            }
+        }
+        createHearts();
+    </script>
+</body>
+</html>
